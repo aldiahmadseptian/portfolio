@@ -294,22 +294,22 @@
           </div>
         </div>
 
-          <form action="">
+          <form name="ALDI-CONTACT-FORM">
             <div class="w-full lg:w-2/3 lg:mx-auto">
             <div class="w-full mb-8 px-4">
              <label for="name" class="text-base text-primary font-bold">Nama</label>
-             <input type="name" id="name" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary ">
+             <input type="name" id="name" name="nama" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary ">
             </div>
             <div class="w-full mb-8 px-4">
-             <label for="email" class="text-base text-primary font-bold">Email</label>
-             <input type="email" id="email" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary ">
+             <label for="phone" class="text-base text-primary font-bold">No Telfon</label>
+             <input type="number" id="phone" name ="telfon" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary ">
             </div>
             <div class="w-full mb-8 px-4">
              <label for="pesan" class="text-base text-primary font-bold">Pesan</label>
-             <textarea type="pesan" id="pesan" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary "></textarea>
+             <textarea type="pesan" id="pesan" name="pesan" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary "></textarea>
             </div>
             <div class="w-full">
-              <button class="text-base font-semibold text-white bg-primary py-3 px-4 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500">Kirim</button>
+              <button type="submit" class="text-base font-semibold text-white bg-primary py-3 px-4 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500">Kirim</button>
             </div>
           </div>
           </form>
@@ -418,5 +418,20 @@
     <!-- Footer End -->
 
     <script src="dist/js/script.js"></script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwkhVshOnFkWpI6FmIUxp_uP30eRcOymazpJHnBg-JqVmBypeyBNTZFhVm-Ifo97gJ2/exec'
+      const form = document.forms['ALDI-CONTACT-FORM']
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
+      swal("Good job!", "You clicked the button!", "success");
+    </script>
+
   </body>
 </html>
