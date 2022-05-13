@@ -293,8 +293,8 @@
             <p class="font-medium text-md text-secondary md:text-lg">Yuk coba kolaborasi Project dengan Aldi</p>
           </div>
         </div>
-
-          <form name="ALDI-CONTACT-FORM">
+        
+          <form name="ALDI-CONTACT-FORM" method="">
             <div class="w-full lg:w-2/3 lg:mx-auto">
             <div class="w-full mb-8 px-4">
              <label for="name" class="text-base text-primary font-bold">Nama</label>
@@ -309,7 +309,7 @@
              <textarea type="pesan" id="pesan" name="pesan" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary "></textarea>
             </div>
             <div class="w-full">
-              <button type="submit" class="text-base font-semibold text-white bg-primary py-3 px-4 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500">Kirim</button>
+              <button type="submit" id="tombol" class="text-base font-semibold text-white bg-primary py-3 px-4 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500">Kirim</button>
             </div>
           </div>
           </form>
@@ -417,21 +417,40 @@
     </footer>
     <!-- Footer End -->
 
+    <!-- Sweet Alert -->
+    <script src="dist/js/sweetalert2.all.min.js"></script>
+
+    <!-- My JS -->
     <script src="dist/js/script.js"></script>
+
+    <!-- Event Listener Onclick -->
+    <script>
+      var btn = document.getElementById('tombol');
+      tombol.addEventListener("click", function () {
+      var myName = document.getElementById('name').value;
+      var noPhone = document.getElementById('phone').value;
+      var msg = document.getElementById('pesan').value;
+      Swal.fire(
+          'Terimakasih ' + myName,
+          'Pesan kamu berhasil dikirim',
+          'success');
+      });
+    </script>
+
+    <!-- Connect with Google Sheets -->
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbwkhVshOnFkWpI6FmIUxp_uP30eRcOymazpJHnBg-JqVmBypeyBNTZFhVm-Ifo97gJ2/exec'
       const form = document.forms['ALDI-CONTACT-FORM']
-    
+
       form.addEventListener('submit', e => {
         e.preventDefault()
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
           .then(response => console.log('Success!', response))
           .catch(error => console.error('Error!', error.message))
       })
-    </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
-      swal("Good job!", "You clicked the button!", "success");
-    </script>
+    </script>    
+
+
 
   </body>
 </html>
